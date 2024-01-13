@@ -21,10 +21,10 @@ class UsersError extends UsersState {
 }
 
 class UsersLoaded extends UsersState {
-  final List<UserEntity> userEntity;
+  final List<UserEntity> users;
 
-  const UsersLoaded(this.userEntity);
+  const UsersLoaded(this.users);
 
   @override
-  List<Object> get props => [userEntity];
+  List<Object> get props => [users];
 }

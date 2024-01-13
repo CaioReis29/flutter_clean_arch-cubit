@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_clean_architecture/core/constants/constants_urls.dart';
 import 'package:flutter_clean_architecture/core/error/exception.dart';
 import 'package:flutter_clean_architecture/core/http_client/http_client.dart';
@@ -15,11 +14,15 @@ class UserDatasourceImp implements UsersDatasource {
   Future<List<UserModel>> getUsers() async {
     final response = await _httpClient.get(apiConstants.usersUrl);
 
-    final json = jsonDecode(response.data);
+    final data = response.data;
+
+    final List<dynamic> jsonList = data;
+
+    final List<UserModel> users =
+        jsonList.map((data) => UserModel.fromJson(data)).toList();
 
     if (response.statusCode == 200) {
-      final List<dynamic> jsonList = json;
-      return jsonList.map((userJson) => UserModel.fromJson(userJson)).toList();
+      return users;
     } else if (response.statusCode == 503) {
       throw const ServerException();
     } else {

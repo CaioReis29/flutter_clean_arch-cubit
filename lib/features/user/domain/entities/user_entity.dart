@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class UserEntity extends Equatable {
-  final DateTime? createdAt;
-  final String? firstName;
-  final String? lastName;
-  final String? description;
-  final String? image;
-  final int? id;
+  final String createdAt;
+  final String firstName;
+  final String lastName;
+  final String description;
+  final String image;
+  final String id;
 
   const UserEntity({
     required this.createdAt,

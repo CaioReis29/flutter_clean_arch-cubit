@@ -1,29 +1,29 @@
 import 'package:flutter_clean_architecture/features/user/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
-  const UserModel({
-    required DateTime? createdAt,
+  UserModel({
+    required String? createdAt,
     required String? firstName,
     required String? lastName,
     required String? description,
     required String? image,
-    required int? id,
+    required String? id,
   }) : super(
-          createdAt: createdAt,
-          firstName: firstName,
-          lastName: lastName,
-          description: description,
-          image: image,
-          id: id,
+          createdAt: createdAt!,
+          firstName: firstName!,
+          lastName: lastName!,
+          description: description!,
+          image: image!,
+          id: id!,
         );
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        createdAt: json['createdAt'] ?? DateTime.now(),
+        createdAt: json['createdAt'] ?? '',
         firstName: json['firstName'] ?? '',
         lastName: json['lastName'] ?? '',
         description: json['description'] ?? '',
         image: json['image'] ?? '',
-        id: json['id'] ?? 0,
+        id: json['id'] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,4 +34,15 @@ class UserModel extends UserEntity {
         'image': image,
         'id': id,
       };
+
+  factory UserModel.fromEntity(UserEntity userEntity) {
+    return UserModel(
+      createdAt: userEntity.createdAt,
+      firstName: userEntity.firstName,
+      lastName: userEntity.lastName,
+      description: userEntity.description,
+      image: userEntity.image,
+      id: userEntity.id,
+    );
+  }
 }

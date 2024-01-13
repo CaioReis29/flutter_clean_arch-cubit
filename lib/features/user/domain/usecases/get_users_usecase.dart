@@ -5,9 +5,9 @@ import 'package:flutter_clean_architecture/features/user/domain/entities/user_en
 import 'package:flutter_clean_architecture/features/user/domain/repositories/user_repository.dart';
 
 class GetUsersUsecase implements UseCaseNoParams<List<UserEntity>> {
-  final UserRepository repository;
-
   GetUsersUsecase(this.repository);
+
+  final UserRepository repository;
 
   @override
   Future<Either<Failure, List<UserEntity>>> call() async {
