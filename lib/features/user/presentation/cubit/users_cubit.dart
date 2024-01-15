@@ -10,7 +10,7 @@ class UsersCubit extends Cubit<UsersState> {
 
   UsersCubit(this._getUsersUsecase) : super(UsersInitial());
 
-  void getUsers() async {
+  Future<void> getUsers() async {
     emit(UsersLoading());
     final failureOrSucess = await _getUsersUsecase();
 
